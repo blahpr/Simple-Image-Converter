@@ -1,7 +1,7 @@
 # Simple Image Converter - Free For Windows
 
 * Convert four different types of image formats ico, png, bmp, jpg also keeps transparency when converting has default sizes and custom.
-![Capture1](https://github.com/user-attachments/assets/362e80b7-acf6-4c93-8d10-738529f2684f) ![Capture4](https://github.com/user-attachments/assets/9280a66c-021a-4447-833c-6ca39ebe09d4)
+-![Capture1](https://github.com/user-attachments/assets/362e80b7-acf6-4c93-8d10-738529f2684f) ![Capture4](https://github.com/user-attachments/assets/9280a66c-021a-4447-833c-6ca39ebe09d4)
 
   
 * Converted Images are Saved to Same Folder as Image by Name and Size.
