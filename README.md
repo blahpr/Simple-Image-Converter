@@ -2,7 +2,9 @@
 Latest exe Build (https://github.com/blahpr/Simple-Image-Converter/releases/latest)
 * Using UPX The Ultimate Packer for eXecutables (https://github.com/upx/upx)
 * Converting and Resizing four different types of image formats ico, png, bmp, jpg also keeps transparency when converting with default and custom sizes.
-* ![Capture1](https://github.com/user-attachments/assets/362e80b7-acf6-4c93-8d10-738529f2684f) ![Capture4](https://github.com/user-attachments/assets/9280a66c-021a-4447-833c-6ca39ebe09d4)
+* ![Capture1](https://github.com/user-attachments/assets/362e80b7-acf6-4c93-8d10-738529f2684f) ![Capture](https://github.com/user-attachments/assets/d918647c-6ce4-43b3-821b-6fee90040572)
+
+![Capture4](https://github.com/user-attachments/assets/9280a66c-021a-4447-833c-6ca39ebe09d4)
 
   
 * Converted Images are Saved to Same Folder as Image by Name and Size.
