@@ -1,4 +1,5 @@
 # Simple Image Converter - Free For Windows
+## # Anyone Can Make Changes As They See Fit. Like Change Stuff, Add Stuff, Dislike Stuff You Can Please Feel Free.
 Latest exe Build (https://github.com/blahpr/Simple-Image-Converter/releases/latest)
 * Using UPX The Ultimate Packer for eXecutables (https://github.com/upx/upx)
 * Converting and Resizing four different types of image formats ico, png, bmp, jpg also keeps transparency when converting with default and custom sizes.
