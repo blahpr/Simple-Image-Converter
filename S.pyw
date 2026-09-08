@@ -33,7 +33,7 @@ def convert_image(input_image_path, output_image_path, format, size=None, transp
         elif format.upper() == 'ICO':
             save_params = {
                 'format': 'ICO', 
-                'sizes': [(size[0], size[1])],
+                'sizes': [(size[0], size[1])] if size else [(img.width, img.height)],
             }
             if transparency:
                 img = img.convert("RGBA")     
@@ -55,7 +55,12 @@ def browse_file():
 def get_output_image_path(input_image_path, size, format):
     base_name, ext = os.path.splitext(os.path.basename(input_image_path))
     dir_name = os.path.dirname(input_image_path)
-    size_str = f"{size[0]}x{size[1]}"
+    
+    if size:
+        size_str = f"{size[0]}x{size[1]}"
+    else:
+        size_str = "original"
+        
     new_path = os.path.join(dir_name, f"{base_name}_{size_str}.{format.lower()}")
     count = 1
     while os.path.exists(new_path):
@@ -197,7 +202,7 @@ def main():
         if file_paths:
             format = format_var.get().upper()
             size = select_size()
-            if not size:
+            if size == "ERROR":
                 return
             for input_image_path in file_paths:
                 output_image_path = get_output_image_path(input_image_path, size, format)
@@ -210,6 +215,9 @@ def main():
 
     def select_size():
         selected_option = size_option_var.get()
+        if selected_option == "original":
+            return None
+
         selected_size = size_var.get().strip()
 
         try:
@@ -217,21 +225,21 @@ def main():
                 width, height = map(int, selected_size.lower().split('x'))
             else:
                 messagebox.showerror("Invalid Size", "Please enter a valid size in the format 'widthxheight'.")
-                return None
+                return "ERROR"
 
             format = format_var.get().upper()
             if format == 'ICO' and (width < 16 or width > 256 or height < 16 or height > 256):
                 messagebox.showerror("Invalid Size", "ICO Size Limit 16-256.")
-                return None
+                return "ERROR"
 
             return width, height
         except ValueError:
             messagebox.showerror("Invalid Size", "Please enter a valid size in the format 'widthxheight'.")
-            return None
+            return "ERROR"
 
     global root
     root = tk.Tk()
-    root.title("Simple Image Converter v1.2")
+    root.title("Simple Image Converter v2.0")
     root.size_selection = None
 
     icon_path = resource_path('s.ico')
@@ -266,6 +274,7 @@ def main():
 
     tk.Radiobutton(size_frame, text="Default Sizes", variable=size_option_var, value="common").grid(row=1, column=0, sticky=tk.W)
     tk.Radiobutton(size_frame, text="Custom Size", variable=size_option_var, value="custom").grid(row=1, column=1, sticky=tk.W)
+    tk.Radiobutton(size_frame, text="Keep Original Size", variable=size_option_var, value="original").grid(row=1, column=2, sticky=tk.W)
 
     custom_size_label = tk.Label(size_frame, text="Custom Size (WxH):")
     custom_size_label.grid(row=2, column=0, sticky=tk.W)
@@ -273,10 +282,15 @@ def main():
     custom_size_entry.grid(row=2, column=1, sticky=tk.W)
 
     def update_size_input():
-        if size_option_var.get() == "custom":
+        option = size_option_var.get()
+        if option == "custom":
             size_dropdown.grid_remove()
             custom_size_label.grid()
             custom_size_entry.grid()
+        elif option == "original":
+            size_dropdown.grid_remove()
+            custom_size_label.grid_remove()
+            custom_size_entry.grid_remove()
         else:
             size_dropdown.grid()
             custom_size_label.grid_remove()
